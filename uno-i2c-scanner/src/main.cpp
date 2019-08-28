@@ -28,12 +28,16 @@
 //
  
 #include <Wire.h>
+//#include "PCF8574"
 #include <Arduino.h>
  
+
+//PCF8574 pcf(0x20, A4, A5);
+
 void setup()
 {
   Wire.begin();
- 
+  //pcf.begin();
   Serial.begin(9600);
   while (!Serial);             // Leonardo: wait for serial monitor
   Serial.println("\nI2C Scanner");
@@ -76,8 +80,11 @@ void loop()
   }
   if (nDevices == 0)
     Serial.println("No I2C devices found\n");
-  else
-    Serial.println("done\n");
+  else {
+    Serial.print("done\n");
+    Serial.print("Devices: "); Serial.println(nDevices);
+    Serial.println();
+  }
  
   delay(5000);           // wait 5 seconds for next scan
 }
